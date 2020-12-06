@@ -117,3 +117,15 @@ header a{
 .button.primary{
   background-color: #f0c040;
 }
+
+.filter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid grey;
+}
+.filter div{
+  flex: 1;
+}
