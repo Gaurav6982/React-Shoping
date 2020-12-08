@@ -8,14 +8,6 @@ export default class Filter extends Component {
                     {this.props.count} Products
                 </div>
                 <div>
-                    Order :{" "}
-                    <select value={this.props.sort} onChange={this.props.sortProducts}>
-                        <option>latest</option>
-                        <option value="lowest">lowest</option>
-                        <option value="highest">highest</option>
-                    </select>
-                </div>
-                <div>
                     Size :{" "}
                     <select value={this.props.size} onChange={this.props.filterProducts}>
                         <option value="">ALL</option>
@@ -25,6 +17,14 @@ export default class Filter extends Component {
                         <option value="L">L</option>
                         <option value="XL">XL</option>
                         <option value="XXL">XXL</option>
+                    </select>
+                </div>
+                <div>
+                    Order :{" "}
+                    <select value={this.props.sort} onChange={this.props.sortProducts}>
+                        <option>latest</option>
+                        <option value="lowest">lowest</option>
+                        <option value="highest">highest</option>
                     </select>
                 </div>
             </div>
