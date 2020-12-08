@@ -129,3 +129,63 @@ header a{
 .filter div{
   flex: 1;
 }
+
+.cart{
+  padding: 1rem;
+  margin: 1rem;
+  display: flex;
+}
+
+.cart-header{
+  border-bottom: 0.1rem grey solid;
+}
+
+.cart-items{
+  padding:0;
+  width: 100%;
+  list-style-type: none;
+}
+.cart-items img{
+  width: 5rem;
+}
+.cart-items li{
+  display: flex;
+}
+.cart-items li div{
+  padding: .5rem;
+}
+.cart-items li div:last-child{
+  flex:1;
+}
+.right{
+  text-align: right;
+}
+.total{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+.total div{
+  font-size: 2rem;
+}
+.total div,
+.total button{
+  flex:1;
+}
+
+.form-container{
+  /* margin: 1rem; */
+  list-style-type: none;
+  width: 100%;
+  padding: 0;
+}
+.form-container li{
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+input{
+  padding: 1rem;
+  border: 0.1rem #c0c0c0 solid;
+}
