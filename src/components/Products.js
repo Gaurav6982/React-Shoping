@@ -23,7 +23,6 @@ class Products extends Component {
   };
   render() {
     const available=this.state.product?JSON.parse(this.state.product.availableSizes):[];
-    console.log(available);
     return (
       <div>
         {
