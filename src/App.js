@@ -49,44 +49,7 @@ class App extends React.Component {
     });
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
-  filterProducts = (event) => {
-    const size = event.target.value;
-    if (size === "") {
-      this.setState({
-        size: "",
-        products: data.products,
-      });
-    } else {
-      this.setState((state) => ({
-        sort: "",
-        size: size,
-        products: data.products.filter(
-          (product) => product.availableSizes.indexOf(size) >= 0
-        ),
-      }));
-    }
-  };
-  sortProducts = (event) => {
-    const sort = event.target.value;
-    this.setState({
-      sort: sort,
-      products: this.state.products
-        .slice()
-        .sort((a, b) =>
-          sort === "lowest"
-            ? a.price > b.price
-              ? 1
-              : -1
-            : sort === "highest"
-            ? a.price < b.price
-              ? 1
-              : -1
-            : a.id < b.id
-            ? 1
-            : -1
-        ),
-    });
-  };
+
   render() {
     return (
       <Provider store={store}>
