@@ -3,8 +3,9 @@ import formatCurrency from "../util";
 import Fade from "react-reveal/Fade";
 import Zoom from "react-reveal/Zoom";
 import Modal from "react-modal";
-import {connect} from "react-redux";
-import {fetchProducts} from "../actions/productActions"
+import { connect } from "react-redux";
+import { fetchProducts } from "../actions/productActions";
+import {addToCart} from "../actions/cartAcions"
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,7 @@ class Products extends Component {
       product: null,
     };
   }
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchProducts();
   }
   closeModal = () => {
@@ -22,46 +23,50 @@ class Products extends Component {
     this.setState({ product });
   };
   render() {
-    const available=this.state.product?JSON.parse(this.state.product.availableSizes):[];
+    const available = this.state.product
+      ? JSON.parse(this.state.product.availableSizes)
+      : [];
     return (
       <div>
-        {
-          !this.props.products ? (<div>Loading...</div>):(
-            
-        <Fade bottom cascade>
-          <ul className="products">
-            {this.props.products.map((product) => (
-              <li key={product.id}>
-                <div className="product">
-                  <a
-                    href={"#" + product.id}
-                    onClick={() => this.openModal(product)}
-                  >
-                    <img src={product.image} alt={product.title} />
-                    <p>{product.title}</p>
-                  </a>
-                  <div className="product-price">
-                    <div>{formatCurrency(product.price)}</div>
-                    <button
-                      onClick={() => this.props.addToCart(product)}
-                      className="button primary"
+        {!this.props.products ? (
+          <div>Loading...</div>
+        ) : (
+          <Fade bottom cascade>
+            <ul className="products">
+              {this.props.products.map((product) => (
+                <li key={product.id}>
+                  <div className="product">
+                    <a
+                      href={"#" + product.id}
+                      onClick={() => this.openModal(product)}
                     >
-                      Add to Cart
-                    </button>
+                      <img src={product.image} alt={product.title} />
+                      <p>{product.title}</p>
+                    </a>
+                    <div className="product-price">
+                      <div>{formatCurrency(product.price)}</div>
+                      <button
+                        onClick={() => this.props.addToCart(product)}
+                        className="button primary"
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Fade>
-          )
-        }
+                </li>
+              ))}
+            </ul>
+          </Fade>
+        )}
 
         {this.state.product && (
           <Modal isOpen={true}>
             <Zoom>
               <div className="close-btn">
-                <button className="button close-modal" onClick={this.closeModal}>
+                <button
+                  className="button close-modal"
+                  onClick={this.closeModal}
+                >
                   x
                 </button>
               </div>
@@ -76,25 +81,26 @@ class Products extends Component {
                   </p>
                   <p>{this.state.product.description}</p>
                   <p>
-                      Available Sizes :{" "}
+                    Available Sizes :{" "}
                     {available.map((x) => (
-                        <span>{" "}
-                      <button className="button">{x}</button>
+                      <span>
+                        {" "}
+                        <button className="button">{x}</button>
                       </span>
                     ))}
                   </p>
                   <p>
-                      <div className="product-price">
-                    <div>{formatCurrency(this.state.product.price)}</div>
-                    <button
-                      className="button primary"
-                      onClick={() => {
+                    <div className="product-price">
+                      <div>{formatCurrency(this.state.product.price)}</div>
+                      <button
+                        className="button primary"
+                        onClick={() => {
                           this.props.addToCart(this.state.product);
-                        this.closeModal();
-                      }}
-                    >
-                      Add to Cart
-                    </button>
+                          this.closeModal();
+                        }}
+                      >
+                        Add to Cart
+                      </button>
                     </div>
                   </p>
                 </div>
@@ -107,4 +113,7 @@ class Products extends Component {
   }
 }
 
-export default connect((state)=>({products:state.products.filteredItems}),{fetchProducts})(Products);
+export default connect(
+  (state) => ({ products: state.products.filteredItems }),
+  { fetchProducts,addToCart }
+)(Products);
