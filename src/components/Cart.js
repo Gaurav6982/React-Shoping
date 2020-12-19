@@ -67,6 +67,10 @@ class Cart extends Component {
                     <div>{this.props.order.address}</div>
                   </li>
                   <li>
+                    <div>Date:</div>
+                    <div>{this.props.order.created_at}</div>
+                  </li>
+                  <li>
                     <div>Total:</div>
                     <div>{formatCurrency(this.props.order.total)}</div>
                   </li>
