@@ -5,7 +5,7 @@ export const orderReducer=(state={},action)=>{
     {
         case CREATE_ORDER: return {item:action.payload}
         case CLEAR_ORDER:return {item:null};
-        // case CLEAR_CART:return {}; 
+        case CLEAR_CART:return {}; 
         default:return state;
     }
 }
