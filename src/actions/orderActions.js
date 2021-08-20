@@ -1,7 +1,7 @@
 import { CLEAR_CART, CLEAR_ORDER, CREATE_ORDER } from "../types"
 
 export const createOrder=(order)=>(dispatch)=>{
-    fetch("http://127.0.0.1:8000/api/order",{
+    fetch("https://shopping-react-backend.herokuapp.com/api/order",{
         method:"POST",
         headers:{
             "Content-type":"applicaton/json",

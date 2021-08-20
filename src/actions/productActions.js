@@ -1,7 +1,7 @@
 import { FETCH_PRODUCTS, ORDER_PRODUCTS_BY_SIZE, SORT_PRODUCTS_BY_PRICE } from "../types";
 
 export const fetchProducts = ()=>async(dispatch)=>{
-    const res=await fetch("http://127.0.0.1:8000/api/products");
+    const res=await fetch("https://shopping-react-backend.herokuapp.com/api/products");
     const data=await res.json();
     dispatch({
         type:FETCH_PRODUCTS,
