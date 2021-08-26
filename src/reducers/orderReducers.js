@@ -1,4 +1,4 @@
-import { CLEAR_CART, CLEAR_ORDER, CREATE_ORDER } from "../types";
+import {  CLEAR_ORDER, CREATE_ORDER } from "../types";
 
 export const orderReducer=(state={},action)=>{
     switch(action.type)
