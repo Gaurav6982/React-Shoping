@@ -32,9 +32,13 @@ header{
  
 main{
   grid-area:main;
+  min-height: 90vh;
 }
 a:hover{
   color: #ff0000;
+}
+.modal{
+  z-index: 9999;
 }
 footer{
   grid-area: footer;

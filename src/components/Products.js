@@ -60,7 +60,7 @@ class Products extends Component {
         )}
 
         {this.state.product && (
-          <Modal isOpen={true}>
+          <Modal isOpen={true} onRequestClose={this.closeModal} ariaHideApp={false}>
             <Zoom>
               <div className="close-btn">
                 <button

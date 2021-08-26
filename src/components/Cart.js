@@ -18,7 +18,6 @@ class Cart extends Component {
     };
   }
   handleInput = (e) => {
-    console.log(e);
     this.setState({ [e.target.name]: e.target.value });
   };
   checkOrder = (e) => {
@@ -34,6 +33,7 @@ class Cart extends Component {
     this.props.createOrder(order);
   };
   closeModal=()=>{
+    this.setState({name:"",email:"",address:"",showForm:false});
     this.props.clearOrder();
   }
   render() {
@@ -47,30 +47,32 @@ class Cart extends Component {
           </div>
         )}
         {this.props.order && (
-          <Modal isOpen={true} onRequestClose={this.closeModal}>
+          <Modal isOpen={true} ariaHideApp={false}>
             <Zoom>
+            <div className="close-btn">
               <button className="close-modal" onClick={this.closeModal}>x</button>
+            </div>
               <div className="order-details">
                 <h3 className="success-message">YOUR ORDER HAS BEEN PLACED.</h3>
                 <h2 >order {this.props.order.id}</h2>
                 <ul>
-                  <li>
+                  <li key={"name"+this.props.order.id}>
                     <div>Name:</div>
                     <div>{this.props.order.name}</div>
                   </li>
-                  <li>
+                  <li key={"email"+this.props.order.id}>
                     <div>Email:</div>
                     <div>{this.props.order.email}</div>
                   </li>
-                  <li>
+                  <li key={"address"+this.props.order.id}>
                     <div>Address:</div>
                     <div>{this.props.order.address}</div>
                   </li>
-                  <li>
+                  <li key={"total"+this.props.order.id}>
                     <div>Total:</div>
                     <div>{formatCurrency(this.props.order.total)}</div>
                   </li>
-                  <li>
+                  <li key={"items"+this.props.order.id}>
                     <div>Cart Items:</div>
                     <div>
                       {JSON.parse(this.props.order.cartItems).map(x=>(
@@ -137,7 +139,7 @@ class Cart extends Component {
                   <div className="cart">
                     <form onSubmit={this.checkOrder}>
                       <ul className="form-container">
-                        <li>
+                        <li key="email">
                           <label>Email</label>
                           <input
                             type="email"
@@ -146,7 +148,7 @@ class Cart extends Component {
                             onChange={this.handleInput}
                           />
                         </li>
-                        <li>
+                        <li key="name">
                           <label>Name</label>
                           <input
                             type="text"
@@ -155,7 +157,7 @@ class Cart extends Component {
                             onChange={this.handleInput}
                           />
                         </li>
-                        <li>
+                        <li key="address">
                           <label>Address</label>
                           <input
                             type="text"
@@ -164,7 +166,7 @@ class Cart extends Component {
                             onChange={this.handleInput}
                           />
                         </li>
-                        <li>
+                        <li key="checkout">
                           <button className="button primary">Checkout</button>
                         </li>
                       </ul>
@@ -182,7 +184,7 @@ class Cart extends Component {
 
 export default connect(
   (state) => ({
-    order:state.order.item,
+    order:state.order.order,
     cartItems: state.cart.cartItems,
   }),
   {
